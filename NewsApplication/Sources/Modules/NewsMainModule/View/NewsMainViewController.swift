@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NewsMainViewController.swift
 //  NewsApplication
 //
 //  Created by Даниил Смирнов on 17.01.2023.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NewsMainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .red
     }
 
 
