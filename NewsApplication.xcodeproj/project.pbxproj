@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A54157052976B72200DE506C /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54157042976B72200DE506C /* NewsCollectionViewCell.swift */; };
+		A54157072976B73D00DE506C /* NewsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54157062976B73D00DE506C /* NewsCollectionView.swift */; };
+		A54157092976BF5500DE506C /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54157082976BF5500DE506C /* HeaderCollectionReusableView.swift */; };
 		A5CD3FA72976B419007D6A45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD3FA62976B419007D6A45 /* AppDelegate.swift */; };
 		A5CD3FAB2976B419007D6A45 /* NewsMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD3FAA2976B419007D6A45 /* NewsMainViewController.swift */; };
 		A5CD3FB02976B41B007D6A45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CD3FAF2976B41B007D6A45 /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A54157042976B72200DE506C /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		A54157062976B73D00DE506C /* NewsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionView.swift; sourceTree = "<group>"; };
+		A54157082976BF5500DE506C /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		A5CD3FA32976B419007D6A45 /* NewsApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CD3FA62976B419007D6A45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CD3FAA2976B419007D6A45 /* NewsMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMainViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				A5CD3FAA2976B419007D6A45 /* NewsMainViewController.swift */,
+				A54157032976B70D00DE506C /* Subviews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -106,6 +113,16 @@
 			children = (
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A54157032976B70D00DE506C /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A54157042976B72200DE506C /* NewsCollectionViewCell.swift */,
+				A54157062976B73D00DE506C /* NewsCollectionView.swift */,
+				A54157082976BF5500DE506C /* HeaderCollectionReusableView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		A5CD3F9A2976B419007D6A45 = {
@@ -204,7 +221,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CD3FAB2976B419007D6A45 /* NewsMainViewController.swift in Sources */,
+				A54157052976B72200DE506C /* NewsCollectionViewCell.swift in Sources */,
 				A5CD3FA72976B419007D6A45 /* AppDelegate.swift in Sources */,
+				A54157092976BF5500DE506C /* HeaderCollectionReusableView.swift in Sources */,
+				A54157072976B73D00DE506C /* NewsCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -326,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -341,13 +361,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2AJ52SSRKR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsApplication/Resources/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -355,6 +378,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.my.NewsApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -366,13 +390,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2AJ52SSRKR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsApplication/Resources/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -380,6 +407,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.my.NewsApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
