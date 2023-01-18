@@ -27,6 +27,8 @@ class NewsMainViewController: UIViewController {
     private func setupView() {
         newsView?.collectionView.delegate = self
         newsView?.collectionView.dataSource = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "News"
     }
 }
 
