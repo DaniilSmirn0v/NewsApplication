@@ -14,6 +14,7 @@ class NewsMainViewController: UIViewController {
         return view as? NewsCollectionView
     }
 
+    let api = ApiUrlFactory.headliners(category: "business")
     //MARK: - Lifecycle
     override func loadView() {
         view = NewsCollectionView()
@@ -22,6 +23,7 @@ class NewsMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        print("\(api.url)")
     }
 
     private func setupView() {
