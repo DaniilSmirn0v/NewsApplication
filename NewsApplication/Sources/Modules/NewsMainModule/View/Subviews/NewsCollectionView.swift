@@ -12,21 +12,22 @@ class NewsCollectionView: UIView {
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupCompositionalLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: NewsCollectionViewCell.reuseId)
+        collectionView.register(NewsCollectionViewCell.self,
+                                forCellWithReuseIdentifier: NewsCollectionViewCell.reuseId)
         collectionView.register(HeaderCollectionReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: HeaderCollectionReusableView.reuseId)
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
-
+    
     //MARK: - Initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupHierarchy()
         setupLayout()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -34,25 +35,26 @@ class NewsCollectionView: UIView {
 
 //MARK: - Layout methods
 extension NewsCollectionView {
-
+    
     private func setupCompositionalLayout() -> UICollectionViewLayout {
         let spacing: CGFloat = 12
-
+        
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                 heightDimension: .absolute(40.0))
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top)
-
+            alignment: .top
+        )
+        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+        
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),
                                                heightDimension: .fractionalHeight(0.3))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-
+        
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]
         section.interGroupSpacing = spacing
@@ -61,11 +63,11 @@ extension NewsCollectionView {
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
-
+    
     private func setupHierarchy() {
         addSubview(collectionView)
     }
-
+    
     private func setupLayout() {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),

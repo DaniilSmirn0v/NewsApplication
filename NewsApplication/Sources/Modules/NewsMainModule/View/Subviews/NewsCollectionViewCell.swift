@@ -12,7 +12,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
     static let reuseId = "NewsCollectionViewCell"
     let gradientLayer = CAGradientLayer()
 
-
     //MARK: - Views
     var newsImage: UIImageView = {
         let imageView = UIImageView()
@@ -26,7 +25,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
     var newsTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "newsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitlenewsTitle"
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         label.textAlignment = .right
         label.textColor = .white
@@ -76,5 +74,13 @@ extension NewsCollectionViewCell {
         newsImage.layer.addSublayer(gradientLayer)
         gradientLayer.colors = [UIColor.black.withAlphaComponent(0.2).cgColor, UIColor.black.withAlphaComponent(0.9).cgColor]
         gradientLayer.frame = bounds
+    }
+}
+
+extension NewsCollectionViewCell: NewsCollectionViewCellConfigurableProtocol {
+    func configure(with viewModel: ViewModel) {
+        guard let viewModel = viewModel as? NewsCollectionViewModel else { return }
+        newsTitle.text = viewModel.newsTitle
+//        newsImage.image = UIImage(data: viewModel.newsImage)
     }
 }

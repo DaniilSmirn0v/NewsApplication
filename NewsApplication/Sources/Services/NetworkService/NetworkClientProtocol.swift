@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NetworkClientProtocol {
-    func perform<T: Decodable>(request: URLRequest, completion: @escaping (Result<T, NetworkError>) -> Void)
+    func fetchNewsData(from request: URLRequest, completion: @escaping (Result<News, NetworkError>) -> Void)
 }

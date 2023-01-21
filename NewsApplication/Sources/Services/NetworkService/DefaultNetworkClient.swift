@@ -15,9 +15,7 @@ class DefaultNetworkClient: NetworkClientProtocol {
         self.urlSession = urlSession
     }
     
-    func perform<T: Decodable>(request: URLRequest,
-                               completion: @escaping (Result<T, NetworkError>) -> Void) {
-        
+    func fetchNewsData(from request: URLRequest, completion: @escaping (Result<News, NetworkError>) -> Void) {
         urlSession.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(.unknown(error)))
@@ -34,11 +32,12 @@ class DefaultNetworkClient: NetworkClientProtocol {
             }
             
             do {
-                let result = try JSONDecoder().decode(T.self, from: data)
-                return completion(.success(result))
+                let result = try JSONDecoder().decode(News.self, from: data)
+                completion(.success(result))
             } catch {
                 completion(.failure(NetworkError.decoding(error)))
             }
         }.resume()
     }
 }
+

@@ -8,76 +8,100 @@
 import UIKit
 
 class NewsMainViewController: UIViewController {
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<Category, NewsCollectionViewModel>
+    public typealias Snapshot = NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>
+    
     //MARK: - Properties
-    private var newsView: NewsCollectionView? {
+    private var newsView: NewsCollectionView! {
         guard isViewLoaded else { return nil }
         return view as? NewsCollectionView
     }
     
-    let api = ApiUrlFactory.headliners(category: "business")
-    let nw = DefaultNetworkClient()
+    let presenter: NewsMainPresenterInputProtocol
+    
+    private var dataSource: DataSource?
+    
+    
+    //MARK: - Initialize
+    init(presenter: NewsMainPresenterInputProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - Lifecycle
     override func loadView() {
         view = NewsCollectionView()
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createDataSource()
         setupView()
-        nw.fetchData { result in
-            
-            DispatchQueue.main.async {
-                switch result {
-                    
-                case .success(let data):
-                    print(data)
-                    data.articles.count
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
+        presenter.fetchNewsData()
     }
     
     private func setupView() {
-        newsView?.collectionView.delegate = self
-        newsView?.collectionView.dataSource = self
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "News"
+        newsView.collectionView.delegate = self
     }
 }
 
-//MARK: - UICollectionViewDataSource
-extension NewsMainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+//MARK: - NewsMainPresenterOutputProtocol
+extension NewsMainViewController: NewsMainPresenterOutputProtocol {
+    func configureView(with viewModel: NewsMainDTO.GetNews.ViewModel) {
+        dataSource?.apply(viewModel.snapshot)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCollectionViewCell.reuseId, for: indexPath) as? NewsCollectionViewCell else { return UICollectionViewCell() }
-        cell.newsImage.image = UIImage(named: "notFoundBlack")
-        return cell
+    func configureAlert(with error: NetworkError) {
+        //TODO: - configureAlert
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        20
+    func didSelect(item: NewsCollectionViewModel) {
+        //TODO: - didSelectItem
     }
+}
+
+//MARK: - UICollectionViewDiffableDataSource
+extension NewsMainViewController {
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.reuseId, for: indexPath) as? HeaderCollectionReusableView else {
-            return UICollectionReusableView()
+    func createDataSource() {
+        dataSource = DataSource(collectionView: newsView.collectionView, cellProvider: {
+            collectionView, indexPath, itemIdentifier in
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: NewsCollectionViewCell.reuseId, for: indexPath) as? NewsCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(with: itemIdentifier)
+            return cell
+        })
+        
+        dataSource?.supplementaryViewProvider = { [weak self] (collectionView, kind, indexPath) -> UICollectionReusableView? in
+            guard let section = self?.dataSource?.sectionIdentifier(for: indexPath.section),
+                  let header = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: UICollectionView.elementKindSectionHeader,
+                    withReuseIdentifier: HeaderCollectionReusableView.reuseId,
+                    for: indexPath) as? HeaderCollectionReusableView else {
+                return UICollectionReusableView()
+            }
+            header.headerLabel.text = section.rawValue
+            return header
         }
-        header.headerLabel.text = "hey, i am header"
-        return header
     }
-    
-    
 }
 
 //MARK: - UICollectionViewDelegate
 extension NewsMainViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = dataSource?.itemIdentifier(for: indexPath) else { return }
+        didSelect(item: item)
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
 }
 
 

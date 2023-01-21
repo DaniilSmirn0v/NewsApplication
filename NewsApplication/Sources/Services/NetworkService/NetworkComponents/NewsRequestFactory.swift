@@ -11,7 +11,7 @@ enum NewsRequestFactory {
     case headlinersRequest(category: String)
     case everythingRequest(title: String)
     
-    var urlReques: URLRequest {
+    var urlRequest: URLRequest {
         switch self {
         case .headlinersRequest(let category):
             return createRequest(url: ApiUrlFactory.headliners(category: category).url)
