@@ -62,8 +62,8 @@ extension NewsMainViewController: NewsMainPresenterOutputProtocol {
         //TODO: - configureAlert
     }
     
-    func didSelect(item: NewsCollectionViewModel) {
-        //TODO: - didSelectItem
+    func didSelectArticle(with url: String) {
+        presenter.didSegueToArticle(with: url)
     }
 }
 
@@ -99,7 +99,7 @@ extension NewsMainViewController {
 extension NewsMainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = dataSource?.itemIdentifier(for: indexPath) else { return }
-        didSelect(item: item)
+        didSelectArticle(with: item.url)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }

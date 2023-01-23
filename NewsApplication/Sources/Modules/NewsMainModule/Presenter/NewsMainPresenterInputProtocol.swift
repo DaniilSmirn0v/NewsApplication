@@ -9,5 +9,5 @@ import Foundation
 
 protocol NewsMainPresenterInputProtocol {
     func fetchNewsData()
-    func didSelectListItem(with order: Article)
+    func didSegueToArticle(with url: String)
 }

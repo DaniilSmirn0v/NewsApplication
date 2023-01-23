@@ -10,5 +10,5 @@ import Foundation
 protocol NewsMainPresenterOutputProtocol: AnyObject {
     func configureView(with viewModel: NewsMainDTO.GetNews.ViewModel)
     func configureAlert(with error: NetworkError)
-    func didSelect(item: NewsCollectionViewModel)
+    func didSelectArticle(with url: String)
 }

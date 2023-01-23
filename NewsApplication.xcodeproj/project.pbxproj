@@ -20,6 +20,9 @@
 		A5247E0429782C8600E4EDD2 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E0329782C8600E4EDD2 /* ViewModelProtocol.swift */; };
 		A5247E0929793ABC00E4EDD2 /* NewsCollectionViewCellConfigurableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E0829793ABC00E4EDD2 /* NewsCollectionViewCellConfigurableProtocol.swift */; };
 		A5247E0B29793AD600E4EDD2 /* NewsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E0A29793AD600E4EDD2 /* NewsCollectionViewModel.swift */; };
+		A5247E0F297E72F300E4EDD2 /* NewsMainModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E0E297E72F300E4EDD2 /* NewsMainModuleAssembly.swift */; };
+		A5247E11297E73B200E4EDD2 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E10297E73B200E4EDD2 /* RouterProtocol.swift */; };
+		A5247E13297E74A000E4EDD2 /* NewsMainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E12297E74A000E4EDD2 /* NewsMainRouter.swift */; };
 		A54157052976B72200DE506C /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54157042976B72200DE506C /* NewsCollectionViewCell.swift */; };
 		A54157072976B73D00DE506C /* NewsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54157062976B73D00DE506C /* NewsCollectionView.swift */; };
 		A54157092976BF5500DE506C /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54157082976BF5500DE506C /* HeaderCollectionReusableView.swift */; };
@@ -43,6 +46,9 @@
 		A5247E0329782C8600E4EDD2 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		A5247E0829793ABC00E4EDD2 /* NewsCollectionViewCellConfigurableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCellConfigurableProtocol.swift; sourceTree = "<group>"; };
 		A5247E0A29793AD600E4EDD2 /* NewsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewModel.swift; sourceTree = "<group>"; };
+		A5247E0E297E72F300E4EDD2 /* NewsMainModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMainModuleAssembly.swift; sourceTree = "<group>"; };
+		A5247E10297E73B200E4EDD2 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
+		A5247E12297E74A000E4EDD2 /* NewsMainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMainRouter.swift; sourceTree = "<group>"; };
 		A54157042976B72200DE506C /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A54157062976B73D00DE506C /* NewsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionView.swift; sourceTree = "<group>"; };
 		A54157082976BF5500DE506C /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -113,6 +119,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		A5247E0C297E6EDB00E4EDD2 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E10297E73B200E4EDD2 /* RouterProtocol.swift */,
+				A5247E12297E74A000E4EDD2 /* NewsMainRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A5247E0D297E72D900E4EDD2 /* NewsMainModuleAssembly */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E0E297E72F300E4EDD2 /* NewsMainModuleAssembly.swift */,
+			);
+			path = NewsMainModuleAssembly;
+			sourceTree = "<group>";
+		};
 		A54156FA2976B5E700DE506C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				A54156FF2976B63A00DE506C /* Application */,
+				A5247E0C297E6EDB00E4EDD2 /* Router */,
 				A5247DE62977E34400E4EDD2 /* Services */,
 				A54156FE2976B62D00DE506C /* Modules */,
 			);
@@ -168,6 +192,7 @@
 		A54157002976B64D00DE506C /* NewsMainModule */ = {
 			isa = PBXGroup;
 			children = (
+				A5247E0D297E72D900E4EDD2 /* NewsMainModuleAssembly */,
 				A5247E0229782C6900E4EDD2 /* ViewModel */,
 				A54157022976B66900DE506C /* Presenter */,
 				A54157012976B66300DE506C /* View */,
@@ -301,10 +326,13 @@
 			files = (
 				A5247E0429782C8600E4EDD2 /* ViewModelProtocol.swift in Sources */,
 				A5247DF429780CCB00E4EDD2 /* DefaultComponents.swift in Sources */,
+				A5247E11297E73B200E4EDD2 /* RouterProtocol.swift in Sources */,
+				A5247E13297E74A000E4EDD2 /* NewsMainRouter.swift in Sources */,
 				A5CD3FAB2976B419007D6A45 /* NewsMainViewController.swift in Sources */,
 				A5247DFA2978146500E4EDD2 /* DefaultNetworkClient.swift in Sources */,
 				A5247DF229780A4300E4EDD2 /* NewsRequestFactory.swift in Sources */,
 				A5247E0129782A4B00E4EDD2 /* NewsMainPresenter.swift in Sources */,
+				A5247E0F297E72F300E4EDD2 /* NewsMainModuleAssembly.swift in Sources */,
 				A5247DFD29782A3000E4EDD2 /* NewsMainPresenterInputProtocol.swift in Sources */,
 				A5247E0B29793AD600E4EDD2 /* NewsCollectionViewModel.swift in Sources */,
 				A54157052976B72200DE506C /* NewsCollectionViewCell.swift in Sources */,

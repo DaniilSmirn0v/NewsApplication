@@ -10,5 +10,6 @@ import Foundation
 struct NewsCollectionViewModel: ViewModel, Hashable {
     let id = UUID()
     let newsTitle: String
+    let url: String
 //    let image: Data
 }

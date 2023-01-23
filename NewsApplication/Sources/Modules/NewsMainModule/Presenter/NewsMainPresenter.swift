@@ -13,13 +13,15 @@ class NewsMainPresenter: NewsMainPresenterInputProtocol {
     
     //MARK: - Properties
     weak var view: NewsMainPresenterOutputProtocol?
+    private let router: RouterProtocol
     private let networkService: NetworkClientProtocol
-
+    
     private var results = [Category: News]()
     
     //MARK: - Initialize
-    init(networkService: NetworkClientProtocol) {
+    init(networkService: NetworkClientProtocol, router: RouterProtocol) {
         self.networkService = networkService
+        self.router = router
     }
     
     //MARK: - NewsMainPresenterInputProtocol methods
@@ -50,65 +52,67 @@ class NewsMainPresenter: NewsMainPresenterInputProtocol {
         }
     }
     
-    
-    func didSelectListItem(with order: Article) {
-        //TODO: - 123
+    func didSegueToArticle(with url: String) {
+        router.presentArticleInSafari(with: url)
     }
+    
     
     //MARK: - Private methods
     private func prepareDataToConfigureCell(responce: NewsMainDTO.GetNews.Response) {
         var snapshot = NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>()
         snapshot.appendSections(Category.allCases)
-
+        
         for (category, news) in responce.result {
             let cellsViewModels = news.articles.map {
-                NewsCollectionViewModel(newsTitle: $0.title ?? "")
+                NewsCollectionViewModel(newsTitle: $0.title,
+                                        url: $0.url
+                )
             }
             print(category)
             snapshot.appendItems(cellsViewModels, toSection: category)
         }
-
+        
         view?.configureView(with: .init(snapshot: snapshot))
     }
-
-//    func searchArticle(request: NewsMainDTO.SearchNews.Request) {
-//        var snapshot = NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>()
-//        snapshot.appendSections(Category.allCases)
-//
-//        for (category, news) in results {
-//            let cellsViewModels = news.articles.filter { article in
-////                article.description?.contains(where: $0.description == request.predicate)
-//                return true
-//            }
-//                .map {
-//                    NewsCollectionViewModel(newsTitle: $0.description ?? "")
-//                }
-//            snapshot.appendItems(cellsViewModels, toSection: category)
-//        }
-//        view?.configureView(with: .init(snapshot: snapshot))
-//    }
+    
+    //    func searchArticle(request: NewsMainDTO.SearchNews.Request) {
+    //        var snapshot = NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>()
+    //        snapshot.appendSections(Category.allCases)
+    //
+    //        for (category, news) in results {
+    //            let cellsViewModels = news.articles.filter { article in
+    ////                article.description?.contains(where: $0.description == request.predicate)
+    //                return true
+    //            }
+    //                .map {
+    //                    NewsCollectionViewModel(newsTitle: $0.description ?? "")
+    //                }
+    //            snapshot.appendItems(cellsViewModels, toSection: category)
+    //        }
+    //        view?.configureView(with: .init(snapshot: snapshot))
+    //    }
 }
 
 enum NewsMainDTO {
-
+    
     enum GetNews {
         struct Request {}
-
+        
         struct Response {
             let result: [Category: News]
         }
-
+        
         struct ViewModel {
             let snapshot: NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>
         }
     }
-
+    
     enum SearchNews {
         struct Request {
             let predicate: String
         }
         struct Response {
-
+            
         }
         struct ViewModel {
             let filtered: NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>
