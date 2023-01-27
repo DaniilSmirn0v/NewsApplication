@@ -7,15 +7,33 @@
 
 import Foundation
 
-class DefaultNetworkClient: NetworkClientProtocol {
+final class DefaultNetworkClient: NetworkClientProtocol {
+    
+    //MARK: - Properties
+    private static let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        return decoder
+    }()
     
     private let urlSession: URLSession
     
+    //MARK: - Initialize
     public init(urlSession: URLSession = .shared) {
         self.urlSession = urlSession
     }
     
-    func fetchNewsData(from request: URLRequest, completion: @escaping (Result<News, NetworkError>) -> Void) {
+    //MARK: - NetworkClientProtocol
+    func fetchHeadlinersNewsData(from request: URLRequest,
+                                 completion: @escaping (Result<News, NetworkError>) -> Void) {
+        perform(request: request, completion: completion)
+    }
+}
+
+    //MARK: - Private methods
+extension DefaultNetworkClient {
+    private func perform<T: Decodable>(request: URLRequest,
+                                       completion: @escaping (Result<T, NetworkError>) -> Void) {
+        
         urlSession.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(.unknown(error)))
@@ -32,7 +50,7 @@ class DefaultNetworkClient: NetworkClientProtocol {
             }
             
             do {
-                let result = try JSONDecoder().decode(News.self, from: data)
+                let result = try Self.decoder.decode(T.self, from: data)
                 completion(.success(result))
             } catch {
                 completion(.failure(NetworkError.decoding(error)))
@@ -40,4 +58,3 @@ class DefaultNetworkClient: NetworkClientProtocol {
         }.resume()
     }
 }
-

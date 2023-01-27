@@ -8,5 +8,6 @@
 import Foundation
 
 protocol NetworkClientProtocol {
-    func fetchNewsData(from request: URLRequest, completion: @escaping (Result<News, NetworkError>) -> Void)
+    func fetchHeadlinersNewsData(from request: URLRequest,
+                                 completion: @escaping (Result<News, NetworkError>) -> Void)
 }

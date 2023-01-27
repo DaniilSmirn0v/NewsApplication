@@ -10,10 +10,11 @@ import UIKit
 class NewsCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
     static let reuseId = "NewsCollectionViewCell"
-    let gradientLayer = CAGradientLayer()
-
+    private let imageLoaderService = ImageLoaderService.shared
+    private let gradientLayer = CAGradientLayer()
+    
     //MARK: - Views
-    var newsImage: UIImageView = {
+    var newsImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
@@ -21,8 +22,8 @@ class NewsCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 14
         return imageView
     }()
-
-    var newsTitle: UILabel = {
+    
+    var newsTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -32,7 +33,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         label.lineBreakMode = .byWordWrapping
         return label
     }()
-
+    
     //MARK: - Initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,39 +41,47 @@ class NewsCollectionViewCell: UICollectionViewCell {
         setupGradient()
         setupLayout()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        newsImageView.image = nil
+        newsTitleLabel.text = nil
+    }
 }
 
 //MARK: - Private methods
 extension NewsCollectionViewCell {
     private func setupHierarchy() {
         [
-            newsImage,
-            newsTitle,
+            newsImageView,
+            newsTitleLabel,
         ].forEach { addSubview($0) }
     }
-
+    
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            newsImage.leadingAnchor.constraint(equalTo: leadingAnchor),
-            newsImage.topAnchor.constraint(equalTo: topAnchor),
-            newsImage.trailingAnchor.constraint(equalTo: trailingAnchor),
-            newsImage.bottomAnchor.constraint(equalTo: bottomAnchor),
-
-            newsTitle.leadingAnchor.constraint(equalTo: newsImage.leadingAnchor, constant: 8),
-            newsTitle.topAnchor.constraint(equalTo: newsImage.topAnchor, constant: 8),
-            newsTitle.trailingAnchor.constraint(equalTo: newsImage.trailingAnchor, constant: -8),
-            newsTitle.bottomAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: -8)
+            newsImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            newsImageView.topAnchor.constraint(equalTo: topAnchor),
+            newsImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            newsImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            newsTitleLabel.leadingAnchor.constraint(equalTo: newsImageView.leadingAnchor, constant: 8),
+            newsTitleLabel.topAnchor.constraint(equalTo: newsImageView.topAnchor, constant: 8),
+            newsTitleLabel.trailingAnchor.constraint(equalTo: newsImageView.trailingAnchor, constant: -8),
+            newsTitleLabel.bottomAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: -8)
         ])
     }
-
+    
     private func setupGradient() {
-        newsImage.layer.addSublayer(gradientLayer)
-        gradientLayer.colors = [UIColor.black.withAlphaComponent(0.2).cgColor, UIColor.black.withAlphaComponent(0.9).cgColor]
+        newsImageView.layer.addSublayer(gradientLayer)
+        gradientLayer.colors = [
+            UIColor.black.withAlphaComponent(0.2).cgColor,
+            UIColor.black.withAlphaComponent(0.9).cgColor
+        ]
         gradientLayer.frame = bounds
     }
 }
@@ -80,7 +89,21 @@ extension NewsCollectionViewCell {
 extension NewsCollectionViewCell: NewsCollectionViewCellConfigurableProtocol {
     func configure(with viewModel: ViewModel) {
         guard let viewModel = viewModel as? NewsCollectionViewModel else { return }
-        newsTitle.text = viewModel.newsTitle
-//        newsImage.image = UIImage(data: viewModel.newsImage)
+        
+        newsTitleLabel.text = viewModel.newsTitle
+        downloadImage(urlString: viewModel.imageUrl)
+        
+    }
+    
+    private func downloadImage(urlString: String) {
+        imageLoaderService.image(from: urlString) { image, imageUrlString  in
+            
+            DispatchQueue.main.async { [weak self] in
+                guard urlString == imageUrlString,
+                      let self = self else { return }
+                
+                self.newsImageView.image = image
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class NewsMainViewController: UIViewController {
     
+    //MARK: - typealias
     typealias DataSource = UICollectionViewDiffableDataSource<Category, NewsCollectionViewModel>
     public typealias Snapshot = NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>
     
@@ -17,6 +18,13 @@ class NewsMainViewController: UIViewController {
         guard isViewLoaded else { return nil }
         return view as? NewsCollectionView
     }
+    
+    private let searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Articles"
+        return searchController
+    }()
     
     let presenter: NewsMainPresenterInputProtocol
     
@@ -40,14 +48,15 @@ class NewsMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createDataSource()
         setupView()
+        createDataSource()
         presenter.fetchNewsData()
     }
     
     private func setupView() {
-        navigationController?.navigationBar.prefersLargeTitles = true
         title = "News"
+        navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = self
         newsView.collectionView.delegate = self
     }
 }
@@ -71,8 +80,8 @@ extension NewsMainViewController: NewsMainPresenterOutputProtocol {
 extension NewsMainViewController {
     
     func createDataSource() {
-        dataSource = DataSource(collectionView: newsView.collectionView, cellProvider: {
-            collectionView, indexPath, itemIdentifier in
+        dataSource = DataSource(collectionView: newsView.collectionView,
+                                cellProvider: { collectionView, indexPath, itemIdentifier in
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: NewsCollectionViewCell.reuseId, for: indexPath) as? NewsCollectionViewCell else {
                 return UICollectionViewCell()
@@ -104,4 +113,15 @@ extension NewsMainViewController: UICollectionViewDelegate {
     }
 }
 
+//MARK: - UISearchResultsUpdating Delegate
+extension NewsMainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if !searchController.searchBar.text.isEmptyOrNil {
+            guard let searchText = searchController.searchBar.text else { return }
+            presenter.searchArticle(request: .init(predicate: searchText))
+        } else {
+            presenter.getDefaulConfigureCell()
+        }
+    }
+}
 

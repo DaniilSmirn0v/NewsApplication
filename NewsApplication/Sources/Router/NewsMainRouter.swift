@@ -31,6 +31,4 @@ final class NewsMainRouter: RouterProtocol {
             navigationController.present(safariViewController, animated: true)
         }
     }
-    
-    
 }
