@@ -8,5 +8,5 @@
 import UIKit
 
 protocol ImageLoaderServiceProtocol {
-    func image(from urlString: String, completion: @escaping (UIImage, String) -> Void)
+    func image(from urlString: String, completion: @escaping (UIImage?) -> Void)
 }

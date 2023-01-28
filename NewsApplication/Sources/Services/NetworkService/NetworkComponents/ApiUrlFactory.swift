@@ -15,7 +15,7 @@ enum ApiUrlFactory {
         switch self {
         case .headliners(let category):
             return configureUrl(with: DefaultComponents.baseUrl, endpoint: DefaultComponents.headlinersPath,
-                                queryParametrs: ["country": "ch",
+                                queryParametrs: ["country": "de",
                                                  "category": "\(category)",
                                                  "sortBy": "publishedAt",
                                                  "apiKey": "\(DefaultComponents.apiKey)"])

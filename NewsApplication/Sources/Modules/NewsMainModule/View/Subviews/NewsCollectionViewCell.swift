@@ -12,6 +12,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     static let reuseId = "NewsCollectionViewCell"
     private let imageLoaderService = ImageLoaderService.shared
     private let gradientLayer = CAGradientLayer()
+    private var imageUrl: String?
     
     //MARK: - Views
     var newsImageView: UIImageView = {
@@ -48,6 +49,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        imageUrl = nil
         newsImageView.image = nil
         newsTitleLabel.text = nil
     }
@@ -89,6 +91,7 @@ extension NewsCollectionViewCell {
 extension NewsCollectionViewCell: NewsCollectionViewCellConfigurableProtocol {
     func configure(with viewModel: ViewModel) {
         guard let viewModel = viewModel as? NewsCollectionViewModel else { return }
+        self.imageUrl = viewModel.imageUrl
         
         newsTitleLabel.text = viewModel.newsTitle
         downloadImage(urlString: viewModel.imageUrl)
@@ -96,12 +99,13 @@ extension NewsCollectionViewCell: NewsCollectionViewCellConfigurableProtocol {
     }
     
     private func downloadImage(urlString: String) {
-        imageLoaderService.image(from: urlString) { image, imageUrlString  in
-            
+        imageLoaderService.image(from: urlString) { image in
             DispatchQueue.main.async { [weak self] in
-                guard urlString == imageUrlString,
-                      let self = self else { return }
-                
+                guard let self = self,
+//                      let image = image,
+                      self.imageUrl == urlString else {
+                    return
+                }
                 self.newsImageView.image = image
             }
         }

@@ -13,24 +13,23 @@ final class ImageLoaderService: ImageLoaderServiceProtocol {
     static let shared = ImageLoaderService()
     private var images: [String: UIImage] = [:]
     private lazy var fileManager = FileManager.default
+    private let placeholderImage = UIImage(named: "notFoundBlack")
     
     //MARK: - Initialize
     private init() {}
     
     //MARK: - ImageLoaderServiceProtocol methods
-    func image(from urlString: String, completion: @escaping (UIImage, String) -> Void) {
+    func image(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         if let image = images[urlString] {
             print("cache image")
-            completion(image, urlString)
+            completion(image)
         } else if let image = getImageFromDisk(url: urlString) {
             print("getImageFromDisk")
-            completion(image, urlString)
+            completion(image)
         } else {
             loadImageFromNet(urlString: urlString) { image in
                 print("loadImageFromNet")
-                DispatchQueue.main.async {
-                    completion(image, urlString)
-                }
+                    completion(image)
             }
         }
     }
@@ -81,10 +80,10 @@ extension ImageLoaderService {
         return image
     }
     
-    private func loadImageFromNet(urlString: String, completion: @escaping (UIImage) -> Void) {
+    private func loadImageFromNet(urlString: String, completion: @escaping (UIImage?) -> Void) {
         let url = URL(string: urlString)
         var urlRequest = URLRequest(url: url ?? URL(fileURLWithPath: ""))
-        urlRequest.timeoutInterval = 60
+        urlRequest.timeoutInterval = 10
         URLSession.shared.dataTask(with: urlRequest) {[weak self] data, response, error in
             guard error == nil,
                   let data = data,
@@ -93,10 +92,11 @@ extension ImageLoaderService {
                   let imageData = UIImage(data: data)?.compress(to: 100),
                   let image = UIImage(data: imageData),
                   let self = self else {
+                completion(self?.placeholderImage)
                 return
             }
-            self.images[urlString] = image
             self.saveImageToDisk(url: urlString, image: image)
+            self.images[urlString] = image
             
             completion(image)
             
