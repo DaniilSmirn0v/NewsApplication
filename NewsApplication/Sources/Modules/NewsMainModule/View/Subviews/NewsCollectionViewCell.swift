@@ -35,6 +35,15 @@ class NewsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    var activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView(style: .medium)
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicatorView.color = .black
+        activityIndicatorView.hidesWhenStopped = true
+        
+        return activityIndicatorView
+    }()
+    
     //MARK: - Initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,12 +69,16 @@ extension NewsCollectionViewCell {
     private func setupHierarchy() {
         [
             newsImageView,
-            newsTitleLabel,
+            activityIndicatorView,
+            newsTitleLabel
         ].forEach { addSubview($0) }
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
+            activityIndicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
             newsImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             newsImageView.topAnchor.constraint(equalTo: topAnchor),
             newsImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -91,6 +104,7 @@ extension NewsCollectionViewCell {
 extension NewsCollectionViewCell: NewsCollectionViewCellConfigurableProtocol {
     func configure(with viewModel: ViewModel) {
         guard let viewModel = viewModel as? NewsCollectionViewModel else { return }
+        activityIndicatorView.startAnimating()
         self.imageUrl = viewModel.imageUrl
         
         newsTitleLabel.text = viewModel.newsTitle
@@ -102,11 +116,15 @@ extension NewsCollectionViewCell: NewsCollectionViewCellConfigurableProtocol {
         imageLoaderService.image(from: urlString) { image in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self,
-//                      let image = image,
                       self.imageUrl == urlString else {
                     return
                 }
+                
                 self.newsImageView.image = image
+                
+                if self.newsImageView.image != nil {
+                    self.activityIndicatorView.stopAnimating()
+                }
             }
         }
     }

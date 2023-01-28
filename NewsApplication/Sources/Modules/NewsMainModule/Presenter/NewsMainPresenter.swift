@@ -91,7 +91,6 @@ class NewsMainPresenter: NewsMainPresenterInputProtocol {
             }
             snapshot.appendItems(cellsViewModels, toSection: category)
         }
-        
         view?.configureView(with: .init(snapshot: snapshot))
     }
 }
