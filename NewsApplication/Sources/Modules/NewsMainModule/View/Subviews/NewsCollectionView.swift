@@ -18,6 +18,8 @@ class NewsCollectionView: UIView {
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: HeaderCollectionReusableView.reuseId)
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.keyboardDismissMode = .onDrag
+
         return collectionView
     }()
     

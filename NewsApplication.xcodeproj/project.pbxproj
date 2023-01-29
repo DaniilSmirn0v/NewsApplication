@@ -36,6 +36,7 @@
 		A5CD3FAB2976B419007D6A45 /* NewsMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD3FAA2976B419007D6A45 /* NewsMainViewController.swift */; };
 		A5CD3FB02976B41B007D6A45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CD3FAF2976B41B007D6A45 /* Assets.xcassets */; };
 		A5CD3FB32976B41B007D6A45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CD3FB12976B41B007D6A45 /* LaunchScreen.storyboard */; };
+		A5E146B72985D91300F4538E /* UIViewController + alertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E146B62985D91300F4538E /* UIViewController + alertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		A5CD3FAF2976B41B007D6A45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5CD3FB22976B41B007D6A45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5CD3FB42976B41B007D6A45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5E146B62985D91300F4538E /* UIViewController + alertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + alertController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				A51196D32982BBFD00F23912 /* Extension UIImage + compression.swift */,
 				A51196D72984219400F23912 /* Extension Optional + String.swift */,
+				A5E146B62985D91300F4538E /* UIViewController + alertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				A5247DFA2978146500E4EDD2 /* DefaultNetworkClient.swift in Sources */,
 				A5247DF229780A4300E4EDD2 /* NewsRequestFactory.swift in Sources */,
 				A51196CF29829F7E00F23912 /* Category.swift in Sources */,
+				A5E146B72985D91300F4538E /* UIViewController + alertController.swift in Sources */,
 				A51196D62983F84400F23912 /* ImageLoaderService.swift in Sources */,
 				A5247E0129782A4B00E4EDD2 /* NewsMainPresenter.swift in Sources */,
 				A5247E0F297E72F300E4EDD2 /* NewsMainModuleAssembly.swift in Sources */,

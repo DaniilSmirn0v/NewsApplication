@@ -14,6 +14,8 @@ class NewsMainPresenter: NewsMainPresenterInputProtocol {
     private let router: RouterProtocol
     private let networkService: NetworkClientProtocol
     private var news = [Category: News]()
+    private let group = DispatchGroup()
+    
     
     //MARK: - Initialize
     init(networkService: NetworkClientProtocol,
@@ -23,28 +25,27 @@ class NewsMainPresenter: NewsMainPresenterInputProtocol {
     }
     
     //MARK: - NewsMainPresenterInputProtocol methods
-    func fetchNewsData() {
-        let group = DispatchGroup()
-        let categories = Category.allCases
+    func fetchNewsData(completion: (Void)? = nil) {
         
-        for category in categories {
-            group.enter()
-            let request = NewsRequestFactory.headlinersRequest(category: category.rawValue).urlRequest
+        Category.allCases.forEach { category in
             
+            self.group.enter()
+            let request = NewsRequestFactory.headlinersRequest(category: category.rawValue).urlRequest
             networkService.fetchHeadlinersNewsData(from: request) { [weak self] result in
                 guard let self = self else { return }
+                self.group.enter()
                 switch result {
                 case .success(let data):
                     self.news[category] = data
                 case .failure(let error):
                     self.view?.configureAlert(with: error)
                 }
-                group.leave()
+                self.group.leave()
+                self.group.notify(queue: .global()) {
+                    self.prepareDataToConfigureCell(responce: .init(result: self.news))
+                }
             }
-        }
-        
-        group.notify(queue: .global(qos: .utility)) {
-            self.defaultDataToConfigureCell(responce: .init(result: self.news))
+            self.group.leave()
         }
     }
     
@@ -74,11 +75,11 @@ class NewsMainPresenter: NewsMainPresenterInputProtocol {
     }
     
     func getDefaulConfigureCell() {
-        defaultDataToConfigureCell(responce: .init(result: news))
+        prepareDataToConfigureCell(responce: .init(result: news))
     }
     
     //MARK: - Private methods
-    private func defaultDataToConfigureCell(responce: NewsMainDTO.GetNews.Response) {
+    private func prepareDataToConfigureCell(responce: NewsMainDTO.GetNews.Response) {
         var snapshot = NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>()
         snapshot.appendSections(Category.allCases)
         

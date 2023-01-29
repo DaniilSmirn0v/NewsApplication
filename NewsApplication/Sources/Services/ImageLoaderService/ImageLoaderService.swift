@@ -29,7 +29,7 @@ final class ImageLoaderService: ImageLoaderServiceProtocol {
         } else {
             loadImageFromNet(urlString: urlString) { image in
                 print("loadImageFromNet")
-                    completion(image)
+                completion(image)
             }
         }
     }
@@ -96,9 +96,8 @@ extension ImageLoaderService {
                 return
             }
             self.saveImageToDisk(url: urlString, image: image)
-            self.images[urlString] = image
-            
             completion(image)
+            self.images[urlString] = image
             
         }.resume()
     }

@@ -13,23 +13,31 @@ class NewsMainViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Category, NewsCollectionViewModel>
     public typealias Snapshot = NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>
     
-    //MARK: - Properties
+    //MARK: - Views
     private var newsView: NewsCollectionView! {
         guard isViewLoaded else { return nil }
         return view as? NewsCollectionView
     }
     
-    private let searchController: UISearchController = {
+    private let searchControllerView: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Articles"
+        searchController.searchBar.placeholder = "Search News here"
         return searchController
     }()
     
-    let presenter: NewsMainPresenterInputProtocol
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .black
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing")
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+
+        return refreshControl
+    }()
     
+    //MARK: - Properties
     private var dataSource: DataSource?
-    
+    let presenter: NewsMainPresenterInputProtocol
     
     //MARK: - Initialize
     init(presenter: NewsMainPresenterInputProtocol) {
@@ -49,15 +57,23 @@ class NewsMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        presenter.fetchNewsData(completion: nil)
         createDataSource()
-        presenter.fetchNewsData()
     }
     
+    //MARK: - Private methods
     private func setupView() {
         title = "News"
-        navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchControllerView
+        searchControllerView.searchResultsUpdater = self
         newsView.collectionView.delegate = self
+        newsView.collectionView.refreshControl = refreshControl
+    }
+    
+    @objc private func refreshData() {
+        DispatchQueue.main.async {
+            self.presenter.fetchNewsData(completion: self.refreshControl.endRefreshing())
+        }
     }
 }
 
@@ -68,7 +84,15 @@ extension NewsMainViewController: NewsMainPresenterOutputProtocol {
     }
     
     func configureAlert(with error: NetworkError) {
-        //TODO: - configureAlert
+        let okAction = UIAlertAction(title: "Okey:<", style: .default) { _ in
+            self.presenter.fetchNewsData(completion: nil)
+        }
+        
+        DispatchQueue.main.async {
+            self.showAlert(title: "Something went wrong...",
+                           message: "\(error.errorDescription)",
+                           actions: [okAction])
+        }
     }
     
     func didSelectArticle(with url: String) {
@@ -87,6 +111,7 @@ extension NewsMainViewController {
                 return UICollectionViewCell()
             }
             cell.configure(with: itemIdentifier)
+            
             return cell
         })
         
