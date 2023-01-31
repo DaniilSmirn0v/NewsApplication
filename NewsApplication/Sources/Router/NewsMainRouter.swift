@@ -11,7 +11,7 @@ import SafariServices
 final class NewsMainRouter: RouterProtocol {
     
     //MARK: - Properties
-    var navigationController: UINavigationController
+    private var navigationController: UINavigationController
     
     //MARK: - Initialize
     init(navigationController: UINavigationController) {

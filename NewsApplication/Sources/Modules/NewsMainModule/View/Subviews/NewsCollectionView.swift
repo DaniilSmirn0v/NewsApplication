@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsCollectionView: UIView {
+final class NewsCollectionView: UIView {
     //MARK: - Views
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupCompositionalLayout())

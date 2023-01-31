@@ -29,7 +29,7 @@ final class DefaultNetworkClient: NetworkClientProtocol {
     }
 }
 
-    //MARK: - Private methods
+//MARK: - Private methods
 extension DefaultNetworkClient {
     private func perform<T: Decodable>(request: URLRequest,
                                        completion: @escaping (Result<T, NetworkError>) -> Void) {

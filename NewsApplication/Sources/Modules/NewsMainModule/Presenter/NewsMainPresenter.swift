@@ -13,39 +13,52 @@ class NewsMainPresenter: NewsMainPresenterInputProtocol {
     weak var view: NewsMainPresenterOutputProtocol?
     private let router: RouterProtocol
     private let networkService: NetworkClientProtocol
+    private let storageService: StorageServiceProtocol
+    private let networkMonitor = NetworkMonitor.shared
     private var news = [Category: News]()
     private let group = DispatchGroup()
     
-    
     //MARK: - Initialize
     init(networkService: NetworkClientProtocol,
-         router: RouterProtocol) {
+         router: RouterProtocol,
+         storageService: StorageServiceProtocol) {
         self.networkService = networkService
         self.router = router
+        self.storageService = storageService
     }
     
     //MARK: - NewsMainPresenterInputProtocol methods
-    func fetchNewsData(completion: (Void)? = nil) {
-        
+    func getData() {
+        if networkMonitor.isConnected == true {
+            fetchNewsDataFromNet()
+        } else {
+            fetchDataFromRealmDB()
+        }
+    }
+    
+    func fetchNewsDataFromNet(completion: (Void)? = nil) {
         Category.allCases.forEach { category in
             
-            self.group.enter()
             let request = NewsRequestFactory.headlinersRequest(category: category.rawValue).urlRequest
+            self.group.enter()
             networkService.fetchHeadlinersNewsData(from: request) { [weak self] result in
                 guard let self = self else { return }
                 self.group.enter()
                 switch result {
                 case .success(let data):
                     self.news[category] = data
+                    self.saveDataToRealmDB(articles: data.articles, category: category.rawValue)
                 case .failure(let error):
                     self.view?.configureAlert(with: error)
                 }
+                
                 self.group.leave()
-                self.group.notify(queue: .global()) {
+                self.group.notify(queue: .global(qos: .utility)) {
                     self.prepareDataToConfigureCell(responce: .init(result: self.news))
                 }
             }
             self.group.leave()
+            
         }
     }
     
@@ -78,8 +91,10 @@ class NewsMainPresenter: NewsMainPresenterInputProtocol {
         prepareDataToConfigureCell(responce: .init(result: news))
     }
     
+    
     //MARK: - Private methods
     private func prepareDataToConfigureCell(responce: NewsMainDTO.GetNews.Response) {
+        
         var snapshot = NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>()
         snapshot.appendSections(Category.allCases)
         
@@ -93,5 +108,18 @@ class NewsMainPresenter: NewsMainPresenterInputProtocol {
             snapshot.appendItems(cellsViewModels, toSection: category)
         }
         view?.configureView(with: .init(snapshot: snapshot))
+    }
+    
+    private func saveDataToRealmDB(articles: [Article], category: Category.RawValue) {
+        DispatchQueue.global().async {
+            self.storageService.saveCategoryArticles(data: articles, category: category)
+        }
+    }
+    
+    private func fetchDataFromRealmDB() {
+        let dataFromRealm = storageService.obtainArticles()
+        DispatchQueue.global().async {
+            self.prepareDataToConfigureCell(responce: .init(result: dataFromRealm))
+        }
     }
 }

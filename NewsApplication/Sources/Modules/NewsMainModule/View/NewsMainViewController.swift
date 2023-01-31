@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsMainViewController: UIViewController {
+final class NewsMainViewController: UIViewController {
     
     //MARK: - typealias
     typealias DataSource = UICollectionViewDiffableDataSource<Category, NewsCollectionViewModel>
@@ -57,8 +57,12 @@ class NewsMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        presenter.fetchNewsData(completion: nil)
         createDataSource()
+        presenter.getData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     //MARK: - Private methods
@@ -71,9 +75,12 @@ class NewsMainViewController: UIViewController {
     }
     
     @objc private func refreshData() {
-        DispatchQueue.main.async {
-            self.presenter.fetchNewsData(completion: self.refreshControl.endRefreshing())
+        let completion = {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.refreshControl.endRefreshing()
+            })
         }
+        self.presenter.fetchNewsDataFromNet(completion: completion())
     }
 }
 
@@ -85,7 +92,7 @@ extension NewsMainViewController: NewsMainPresenterOutputProtocol {
     
     func configureAlert(with error: NetworkError) {
         let okAction = UIAlertAction(title: "Okey:<", style: .default) { _ in
-            self.presenter.fetchNewsData(completion: nil)
+            self.presenter.fetchNewsDataFromNet(completion: nil)
         }
         
         DispatchQueue.main.async {

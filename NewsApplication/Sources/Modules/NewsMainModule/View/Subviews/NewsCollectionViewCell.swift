@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsCollectionViewCell: UICollectionViewCell {
+final class NewsCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
     static let reuseId = "NewsCollectionViewCell"
     private let imageLoaderService = ImageLoaderService.shared

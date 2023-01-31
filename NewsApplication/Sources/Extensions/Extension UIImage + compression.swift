@@ -9,7 +9,7 @@ import UIKit
 
 extension UIImage {
     
-    //MARK: - API
+    //MARK: - API method
     func compress(to kb: Int, allowedMargin: CGFloat = 0.2) -> Data {
         let bytes = kb * 1024
         var compression: CGFloat = 1.0
@@ -43,5 +43,4 @@ extension UIImage {
             _ in draw(in: CGRect(origin: .zero, size: canvas))
         }
     }
-    
 }

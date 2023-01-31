@@ -21,14 +21,11 @@ final class ImageLoaderService: ImageLoaderServiceProtocol {
     //MARK: - ImageLoaderServiceProtocol methods
     func image(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         if let image = images[urlString] {
-            print("cache image")
             completion(image)
         } else if let image = getImageFromDisk(url: urlString) {
-            print("getImageFromDisk")
             completion(image)
         } else {
             loadImageFromNet(urlString: urlString) { image in
-                print("loadImageFromNet")
                 completion(image)
             }
         }
@@ -47,7 +44,9 @@ extension ImageLoaderService {
         
         if !fileManager.fileExists(atPath: url.path) {
             do {
-                try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(at: url,
+                                                withIntermediateDirectories: true,
+                                                attributes: nil)
             } catch {
                 print(error)
             }
@@ -98,8 +97,6 @@ extension ImageLoaderService {
             self.saveImageToDisk(url: urlString, image: image)
             completion(image)
             self.images[urlString] = image
-            
         }.resume()
     }
 }
-

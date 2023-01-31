@@ -25,9 +25,8 @@ enum NewsMainDTO {
         struct Request {
             let predicate: String
         }
-        struct Response {
-            
-        }
+        struct Response {}
+        
         struct ViewModel {
             let filtered: NSDiffableDataSourceSnapshot<Category, NewsCollectionViewModel>
         }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 protocol RouterProtocol {
     func initialViewController()
     func presentArticleInSafari(with urlString: String)

@@ -10,7 +10,10 @@ import UIKit
 class NewsMainModuleAssembly {
     static func createNewsMainModule(router: RouterProtocol) -> UIViewController {
         let networkClient = DefaultNetworkClient()
-        let presenter = NewsMainPresenter(networkService: networkClient, router: router)
+        let storageService = StorageService()
+        let presenter = NewsMainPresenter(networkService: networkClient,
+                                          router: router,
+                                          storageService: storageService)
         let newsMainViewController = NewsMainViewController(presenter: presenter)
         presenter.view = newsMainViewController
         

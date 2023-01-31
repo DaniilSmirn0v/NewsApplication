@@ -8,7 +8,8 @@
 import Foundation
 
 protocol NewsMainPresenterInputProtocol {
-    func fetchNewsData(completion: (Void)?)
+    func getData()
+    func fetchNewsDataFromNet(completion: (Void)?)
     func didSegueToArticle(with url: String)
     func searchArticle(request: NewsMainDTO.SearchNews.Request)
     func getDefaulConfigureCell()
