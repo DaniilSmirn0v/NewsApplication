@@ -9,21 +9,15 @@ import Foundation
 
 enum ApiUrlFactory {
     case headliners(category: String)
-    case everything(title: String)
     
     var url: URL {
         switch self {
         case .headliners(let category):
             return configureUrl(with: DefaultComponents.baseUrl, endpoint: DefaultComponents.headlinersPath,
-                                queryParametrs: ["country": "us",
+                                queryParametrs: ["country": "de",
                                                  "category": "\(category)",
                                                  "sortBy": "publishedAt",
                                                  "apiKey": "\(DefaultComponents.apiKey)"])
-        case .everything(let title):
-            return configureUrl(with: DefaultComponents.baseUrl,
-                                endpoint: DefaultComponents.everythingPath,
-                                queryParametrs: ["q": "\(title)",
-                                                 "sortBy": "popularity"])
         }
     }
     

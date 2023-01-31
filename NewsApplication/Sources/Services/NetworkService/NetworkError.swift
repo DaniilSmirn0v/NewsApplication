@@ -16,13 +16,13 @@ enum NetworkError: Error {
     var errorDescription: String {
         switch self {
         case .invalidStatusCode(let statusCode):
-            return "Ошибка \(statusCode)"
+            return "Error \(statusCode)"
         case .emptyData:
-            return "Данные отсутствуют"
+            return "No data"
         case .decoding(let error):
-            return "Ошибка преобразования данных \(error.localizedDescription)"
+            return "Data conversion error \(error.localizedDescription)"
         case .unknown(let error):
-            return "Неизвестная ошибка \n\(error.localizedDescription)"
+            return "Error: \(error.localizedDescription)"
         }
     }
 }

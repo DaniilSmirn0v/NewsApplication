@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A51196CF29829F7E00F23912 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51196CE29829F7E00F23912 /* Category.swift */; };
+		A51196D42982BBFD00F23912 /* Extension UIImage + compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51196D32982BBFD00F23912 /* Extension UIImage + compression.swift */; };
+		A51196D62983F84400F23912 /* ImageLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51196D52983F84400F23912 /* ImageLoaderService.swift */; };
+		A51196D82984219400F23912 /* Extension Optional + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51196D72984219400F23912 /* Extension Optional + String.swift */; };
+		A51196DB29842CED00F23912 /* NewsMainDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51196DA29842CED00F23912 /* NewsMainDTO.swift */; };
 		A5247DEA2977E46100E4EDD2 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247DE92977E46100E4EDD2 /* Article.swift */; };
 		A5247DF029780A2300E4EDD2 /* ApiUrlFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247DEF29780A2200E4EDD2 /* ApiUrlFactory.swift */; };
 		A5247DF229780A4300E4EDD2 /* NewsRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247DF129780A4300E4EDD2 /* NewsRequestFactory.swift */; };
@@ -14,6 +19,16 @@
 		A5247DF629780EA000E4EDD2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247DF529780EA000E4EDD2 /* NetworkError.swift */; };
 		A5247DF82978145400E4EDD2 /* NetworkClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247DF72978145400E4EDD2 /* NetworkClientProtocol.swift */; };
 		A5247DFA2978146500E4EDD2 /* DefaultNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247DF92978146500E4EDD2 /* DefaultNetworkClient.swift */; };
+		A5247DFD29782A3000E4EDD2 /* NewsMainPresenterInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247DFC29782A3000E4EDD2 /* NewsMainPresenterInputProtocol.swift */; };
+		A5247DFF29782A4000E4EDD2 /* NewsMainPresenterOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247DFE29782A4000E4EDD2 /* NewsMainPresenterOutputProtocol.swift */; };
+		A5247E0129782A4B00E4EDD2 /* NewsMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E0029782A4B00E4EDD2 /* NewsMainPresenter.swift */; };
+		A5247E0429782C8600E4EDD2 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E0329782C8600E4EDD2 /* ViewModelProtocol.swift */; };
+		A5247E0929793ABC00E4EDD2 /* NewsCollectionViewCellConfigurableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E0829793ABC00E4EDD2 /* NewsCollectionViewCellConfigurableProtocol.swift */; };
+		A5247E0B29793AD600E4EDD2 /* NewsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E0A29793AD600E4EDD2 /* NewsCollectionViewModel.swift */; };
+		A5247E0F297E72F300E4EDD2 /* NewsMainModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E0E297E72F300E4EDD2 /* NewsMainModuleAssembly.swift */; };
+		A5247E11297E73B200E4EDD2 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E10297E73B200E4EDD2 /* RouterProtocol.swift */; };
+		A5247E13297E74A000E4EDD2 /* NewsMainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E12297E74A000E4EDD2 /* NewsMainRouter.swift */; };
+		A5247E16297E90F600E4EDD2 /* ImageLoaderServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E15297E90F600E4EDD2 /* ImageLoaderServiceProtocol.swift */; };
 		A54157052976B72200DE506C /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54157042976B72200DE506C /* NewsCollectionViewCell.swift */; };
 		A54157072976B73D00DE506C /* NewsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54157062976B73D00DE506C /* NewsCollectionView.swift */; };
 		A54157092976BF5500DE506C /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54157082976BF5500DE506C /* HeaderCollectionReusableView.swift */; };
@@ -21,9 +36,19 @@
 		A5CD3FAB2976B419007D6A45 /* NewsMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD3FAA2976B419007D6A45 /* NewsMainViewController.swift */; };
 		A5CD3FB02976B41B007D6A45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CD3FAF2976B41B007D6A45 /* Assets.xcassets */; };
 		A5CD3FB32976B41B007D6A45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CD3FB12976B41B007D6A45 /* LaunchScreen.storyboard */; };
+		A5E146B72985D91300F4538E /* UIViewController + alertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E146B62985D91300F4538E /* UIViewController + alertController.swift */; };
+		A5E146D02987DB0000F4538E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5E146CF2987DB0000F4538E /* RealmSwift */; };
+		A5E146D52987E47800F4538E /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E146D42987E47800F4538E /* StorageService.swift */; };
+		A5E146D9298931E100F4538E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E146D8298931E100F4538E /* NetworkMonitor.swift */; };
+		A5E146DB29899F3300F4538E /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E146DA29899F3300F4538E /* RealmModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A51196CE29829F7E00F23912 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		A51196D32982BBFD00F23912 /* Extension UIImage + compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension UIImage + compression.swift"; sourceTree = "<group>"; };
+		A51196D52983F84400F23912 /* ImageLoaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderService.swift; sourceTree = "<group>"; };
+		A51196D72984219400F23912 /* Extension Optional + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension Optional + String.swift"; sourceTree = "<group>"; };
+		A51196DA29842CED00F23912 /* NewsMainDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMainDTO.swift; sourceTree = "<group>"; };
 		A5247DE92977E46100E4EDD2 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		A5247DEF29780A2200E4EDD2 /* ApiUrlFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrlFactory.swift; sourceTree = "<group>"; };
 		A5247DF129780A4300E4EDD2 /* NewsRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRequestFactory.swift; sourceTree = "<group>"; };
@@ -31,6 +56,16 @@
 		A5247DF529780EA000E4EDD2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		A5247DF72978145400E4EDD2 /* NetworkClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientProtocol.swift; sourceTree = "<group>"; };
 		A5247DF92978146500E4EDD2 /* DefaultNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkClient.swift; sourceTree = "<group>"; };
+		A5247DFC29782A3000E4EDD2 /* NewsMainPresenterInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMainPresenterInputProtocol.swift; sourceTree = "<group>"; };
+		A5247DFE29782A4000E4EDD2 /* NewsMainPresenterOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMainPresenterOutputProtocol.swift; sourceTree = "<group>"; };
+		A5247E0029782A4B00E4EDD2 /* NewsMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMainPresenter.swift; sourceTree = "<group>"; };
+		A5247E0329782C8600E4EDD2 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		A5247E0829793ABC00E4EDD2 /* NewsCollectionViewCellConfigurableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCellConfigurableProtocol.swift; sourceTree = "<group>"; };
+		A5247E0A29793AD600E4EDD2 /* NewsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewModel.swift; sourceTree = "<group>"; };
+		A5247E0E297E72F300E4EDD2 /* NewsMainModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMainModuleAssembly.swift; sourceTree = "<group>"; };
+		A5247E10297E73B200E4EDD2 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
+		A5247E12297E74A000E4EDD2 /* NewsMainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMainRouter.swift; sourceTree = "<group>"; };
+		A5247E15297E90F600E4EDD2 /* ImageLoaderServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderServiceProtocol.swift; sourceTree = "<group>"; };
 		A54157042976B72200DE506C /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A54157062976B73D00DE506C /* NewsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionView.swift; sourceTree = "<group>"; };
 		A54157082976BF5500DE506C /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -40,6 +75,10 @@
 		A5CD3FAF2976B41B007D6A45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5CD3FB22976B41B007D6A45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5CD3FB42976B41B007D6A45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5E146B62985D91300F4538E /* UIViewController + alertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + alertController.swift"; sourceTree = "<group>"; };
+		A5E146D42987E47800F4538E /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		A5E146D8298931E100F4538E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		A5E146DA29899F3300F4538E /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,15 +86,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5E146D02987DB0000F4538E /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A51196CD29829F6400F23912 /* Entities  */ = {
+			isa = PBXGroup;
+			children = (
+				A51196CE29829F7E00F23912 /* Category.swift */,
+			);
+			path = "Entities ";
+			sourceTree = "<group>";
+		};
+		A51196D22982BBD200F23912 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A51196D32982BBFD00F23912 /* Extension UIImage + compression.swift */,
+				A51196D72984219400F23912 /* Extension Optional + String.swift */,
+				A5E146B62985D91300F4538E /* UIViewController + alertController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A51196D929842CD600F23912 /* NewsMainDTO */ = {
+			isa = PBXGroup;
+			children = (
+				A51196DA29842CED00F23912 /* NewsMainDTO.swift */,
+			);
+			path = NewsMainDTO;
+			sourceTree = "<group>";
+		};
 		A5247DE62977E34400E4EDD2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A5E146D12987DC8300F4538E /* StorageService */,
+				A5247E14297E8B8B00E4EDD2 /* ImageLoaderService */,
 				A5247DE72977E35E00E4EDD2 /* NetworkService */,
 			);
 			path = Services;
@@ -64,11 +132,11 @@
 		A5247DE72977E35E00E4EDD2 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				A5247DFB2978270500E4EDD2 /* NetworkComponents */,
-				A5247DE82977E38700E4EDD2 /* Model */,
-				A5247DF72978145400E4EDD2 /* NetworkClientProtocol.swift */,
 				A5247DF529780EA000E4EDD2 /* NetworkError.swift */,
+				A5247DF72978145400E4EDD2 /* NetworkClientProtocol.swift */,
 				A5247DF92978146500E4EDD2 /* DefaultNetworkClient.swift */,
+				A5E146D8298931E100F4538E /* NetworkMonitor.swift */,
+				A5247DFB2978270500E4EDD2 /* NetworkComponents */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -91,6 +159,42 @@
 			path = NetworkComponents;
 			sourceTree = "<group>";
 		};
+		A5247E0229782C6900E4EDD2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E0A29793AD600E4EDD2 /* NewsCollectionViewModel.swift */,
+				A5247E0329782C8600E4EDD2 /* ViewModelProtocol.swift */,
+				A5247E0829793ABC00E4EDD2 /* NewsCollectionViewCellConfigurableProtocol.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A5247E0C297E6EDB00E4EDD2 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E10297E73B200E4EDD2 /* RouterProtocol.swift */,
+				A5247E12297E74A000E4EDD2 /* NewsMainRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A5247E0D297E72D900E4EDD2 /* NewsMainModuleAssembly */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E0E297E72F300E4EDD2 /* NewsMainModuleAssembly.swift */,
+			);
+			path = NewsMainModuleAssembly;
+			sourceTree = "<group>";
+		};
+		A5247E14297E8B8B00E4EDD2 /* ImageLoaderService */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E15297E90F600E4EDD2 /* ImageLoaderServiceProtocol.swift */,
+				A51196D52983F84400F23912 /* ImageLoaderService.swift */,
+			);
+			path = ImageLoaderService;
+			sourceTree = "<group>";
+		};
 		A54156FA2976B5E700DE506C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +207,10 @@
 		A54156FB2976B5F600DE506C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A51196D22982BBD200F23912 /* Extensions */,
 				A54156FF2976B63A00DE506C /* Application */,
+				A5247E0C297E6EDB00E4EDD2 /* Router */,
+				A51196CD29829F6400F23912 /* Entities  */,
 				A5247DE62977E34400E4EDD2 /* Services */,
 				A54156FE2976B62D00DE506C /* Modules */,
 			);
@@ -130,6 +237,7 @@
 		A54156FE2976B62D00DE506C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A51196D929842CD600F23912 /* NewsMainDTO */,
 				A54157002976B64D00DE506C /* NewsMainModule */,
 			);
 			path = Modules;
@@ -146,6 +254,9 @@
 		A54157002976B64D00DE506C /* NewsMainModule */ = {
 			isa = PBXGroup;
 			children = (
+				A5247DE82977E38700E4EDD2 /* Model */,
+				A5247E0D297E72D900E4EDD2 /* NewsMainModuleAssembly */,
+				A5247E0229782C6900E4EDD2 /* ViewModel */,
 				A54157022976B66900DE506C /* Presenter */,
 				A54157012976B66300DE506C /* View */,
 			);
@@ -164,6 +275,9 @@
 		A54157022976B66900DE506C /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A5247DFC29782A3000E4EDD2 /* NewsMainPresenterInputProtocol.swift */,
+				A5247DFE29782A4000E4EDD2 /* NewsMainPresenterOutputProtocol.swift */,
+				A5247E0029782A4B00E4EDD2 /* NewsMainPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -203,6 +317,15 @@
 			path = NewsApplication;
 			sourceTree = "<group>";
 		};
+		A5E146D12987DC8300F4538E /* StorageService */ = {
+			isa = PBXGroup;
+			children = (
+				A5E146DA29899F3300F4538E /* RealmModel.swift */,
+				A5E146D42987E47800F4538E /* StorageService.swift */,
+			);
+			path = StorageService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -219,6 +342,9 @@
 			dependencies = (
 			);
 			name = NewsApplication;
+			packageProductDependencies = (
+				A5E146CF2987DB0000F4538E /* RealmSwift */,
+			);
 			productName = NewsApplication;
 			productReference = A5CD3FA32976B419007D6A45 /* NewsApplication.app */;
 			productType = "com.apple.product-type.application";
@@ -247,6 +373,9 @@
 				Base,
 			);
 			mainGroup = A5CD3F9A2976B419007D6A45;
+			packageReferences = (
+				A5E146CE2987DB0000F4538E /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = A5CD3FA42976B419007D6A45 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -273,17 +402,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5247E16297E90F600E4EDD2 /* ImageLoaderServiceProtocol.swift in Sources */,
+				A5247E0429782C8600E4EDD2 /* ViewModelProtocol.swift in Sources */,
 				A5247DF429780CCB00E4EDD2 /* DefaultComponents.swift in Sources */,
+				A5E146D9298931E100F4538E /* NetworkMonitor.swift in Sources */,
+				A51196D42982BBFD00F23912 /* Extension UIImage + compression.swift in Sources */,
+				A5247E11297E73B200E4EDD2 /* RouterProtocol.swift in Sources */,
+				A5247E13297E74A000E4EDD2 /* NewsMainRouter.swift in Sources */,
 				A5CD3FAB2976B419007D6A45 /* NewsMainViewController.swift in Sources */,
+				A51196D82984219400F23912 /* Extension Optional + String.swift in Sources */,
 				A5247DFA2978146500E4EDD2 /* DefaultNetworkClient.swift in Sources */,
 				A5247DF229780A4300E4EDD2 /* NewsRequestFactory.swift in Sources */,
+				A51196CF29829F7E00F23912 /* Category.swift in Sources */,
+				A5E146B72985D91300F4538E /* UIViewController + alertController.swift in Sources */,
+				A5E146DB29899F3300F4538E /* RealmModel.swift in Sources */,
+				A51196D62983F84400F23912 /* ImageLoaderService.swift in Sources */,
+				A5247E0129782A4B00E4EDD2 /* NewsMainPresenter.swift in Sources */,
+				A5247E0F297E72F300E4EDD2 /* NewsMainModuleAssembly.swift in Sources */,
+				A5247DFD29782A3000E4EDD2 /* NewsMainPresenterInputProtocol.swift in Sources */,
+				A5247E0B29793AD600E4EDD2 /* NewsCollectionViewModel.swift in Sources */,
 				A54157052976B72200DE506C /* NewsCollectionViewCell.swift in Sources */,
 				A5247DEA2977E46100E4EDD2 /* Article.swift in Sources */,
 				A5247DF029780A2300E4EDD2 /* ApiUrlFactory.swift in Sources */,
 				A5CD3FA72976B419007D6A45 /* AppDelegate.swift in Sources */,
 				A54157092976BF5500DE506C /* HeaderCollectionReusableView.swift in Sources */,
 				A5247DF82978145400E4EDD2 /* NetworkClientProtocol.swift in Sources */,
+				A5247DFF29782A4000E4EDD2 /* NewsMainPresenterOutputProtocol.swift in Sources */,
+				A5E146D52987E47800F4538E /* StorageService.swift in Sources */,
 				A54157072976B73D00DE506C /* NewsCollectionView.swift in Sources */,
+				A5247E0929793ABC00E4EDD2 /* NewsCollectionViewCellConfigurableProtocol.swift in Sources */,
+				A51196DB29842CED00F23912 /* NewsMainDTO.swift in Sources */,
 				A5247DF629780EA000E4EDD2 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +577,7 @@
 				INFOPLIST_FILE = NewsApplication/Resources/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -458,6 +607,7 @@
 				INFOPLIST_FILE = NewsApplication/Resources/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,6 +646,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A5E146CE2987DB0000F4538E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A5E146CF2987DB0000F4538E /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5E146CE2987DB0000F4538E /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A5CD3F9B2976B419007D6A45 /* Project object */;
 }
